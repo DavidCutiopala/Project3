@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="12.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="LIBRO_CONTABLE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Precision="8" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USU_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="FECHA_INICIO" Type="timestamp" Precision="6" />
+    <Property Name="FECHA_FIN" Type="timestamp" Precision="6" />
+    <Property Name="TOTAL_INGRESOS" Type="number" Precision="10" Scale="3" Nullable="false" />
+    <Property Name="TOTAL_GASTOS" Type="number" Precision="10" Scale="3" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'DAVIDTEST.MLOG$_TRANSACCION' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="MLOG$_TRANSACCION">
+          <Property Name="ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="SNAPTIME$$" Type="date" />
+          <Property Name="DMLTYPE$$" Type="varchar2" MaxLength="1" />
+          <Property Name="OLD_NEW$$" Type="varchar2" MaxLength="1" />
+          <Property Name="CHANGE_VECTOR$$" Type="raw" MaxLength="255" />
+          <Property Name="XID$$" Type="number" Precision="38" Scale="0" />
+        </EntityType>-->
+  <EntityType Name="PRESUPUESTO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Precision="8" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USU_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="FECHA_INICIO" Type="timestamp" Precision="6" />
+    <Property Name="FECHA_FIN" Type="timestamp" Precision="6" />
+    <Property Name="VALOR_PRE" Type="number" Precision="10" Scale="3" Nullable="false" />
+    <Property Name="TOTAL_GASTOS" Type="number" Precision="10" Scale="3" />
+  </EntityType>
+  <EntityType Name="REG_DET_LIBROS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TRA_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="LIB_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="REG_DET_PRESUPUESTOS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PRE_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="TRA_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ROL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Precision="2" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar2" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RUBRO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Precision="8" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar2" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'DAVIDTEST.RUPD$_TRANSACCION' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="RUPD$_TRANSACCION">
+          <Property Name="ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="DMLTYPE$$" Type="varchar2" MaxLength="1" />
+          <Property Name="SNAPID" Type="number" Precision="38" Scale="0" />
+          <Property Name="CHANGE_VECTOR$$" Type="raw" MaxLength="255" />
+        </EntityType>-->
+  <EntityType Name="TRANSACCION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Precision="8" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RUB_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="TIPO" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="FECHA" Type="timestamp" Precision="6" />
+    <Property Name="SUBTOTAL" Type="number" Precision="10" Scale="3" />
+    <Property Name="IMPUESTO" Type="number" Precision="10" Scale="3" />
+    <Property Name="TOTAL" Type="number" Precision="10" Scale="3" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="number" Precision="8" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ROL_ID" Type="number" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="NOMBRE_USUARIO" Type="varchar2" MaxLength="60" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar2" MaxLength="200" Nullable="false" />
+    <Property Name="APELLIDO" Type="varchar2" MaxLength="200" Nullable="false" />
+    <Property Name="CEDULA" Type="varchar2" MaxLength="10" Nullable="false" />
+    <Property Name="RUC" Type="varchar2" MaxLength="15" Nullable="false" />
+    <Property Name="DIRECCION" Type="varchar2" MaxLength="200" />
+    <Property Name="TELEFONO" Type="varchar2" MaxLength="10" />
+    <Property Name="EMAIL" Type="varchar2" MaxLength="150" />
+    <Property Name="PASSWORD" Type="varchar2" MaxLength="200" />
+  </EntityType>
+  <Association Name="FK_LIBRO_CO_RELATIONS_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="LIBRO_CONTABLE" Type="Self.LIBRO_CONTABLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LIBRO_CONTABLE">
+        <PropertyRef Name="USU_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRESUPUE_RELATIONS_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="PRESUPUESTO" Type="Self.PRESUPUESTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRESUPUESTO">
+        <PropertyRef Name="USU_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REG_DET__RELATIONS_LIBRO_CO">
+    <End Role="LIBRO_CONTABLE" Type="Self.LIBRO_CONTABLE" Multiplicity="1" />
+    <End Role="REG_DET_LIBROS" Type="Self.REG_DET_LIBROS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LIBRO_CONTABLE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="REG_DET_LIBROS">
+        <PropertyRef Name="LIB_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REG_DET__RELATIONS_PRESUPUE">
+    <End Role="PRESUPUESTO" Type="Self.PRESUPUESTO" Multiplicity="1" />
+    <End Role="REG_DET_PRESUPUESTOS" Type="Self.REG_DET_PRESUPUESTOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRESUPUESTO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="REG_DET_PRESUPUESTOS">
+        <PropertyRef Name="PRE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REG_DET__RELATIONS_TRANSACC">
+    <End Role="TRANSACCION" Type="Self.TRANSACCION" Multiplicity="0..1" />
+    <End Role="REG_DET_LIBROS" Type="Self.REG_DET_LIBROS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRANSACCION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="REG_DET_LIBROS">
+        <PropertyRef Name="TRA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REG_DET__RREG_TRA_TRANSACC">
+    <End Role="TRANSACCION" Type="Self.TRANSACCION" Multiplicity="1" />
+    <End Role="REG_DET_PRESUPUESTOS" Type="Self.REG_DET_PRESUPUESTOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRANSACCION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="REG_DET_PRESUPUESTOS">
+        <PropertyRef Name="TRA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRANSACC_RELATIONS_RUBRO">
+    <End Role="RUBRO" Type="Self.RUBRO" Multiplicity="1" />
+    <End Role="TRANSACCION" Type="Self.TRANSACCION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RUBRO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TRANSACCION">
+        <PropertyRef Name="RUB_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USUARIO_RELATIONS_ROL">
+    <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="ROL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="LIBRO_CONTABLE" EntityType="Self.LIBRO_CONTABLE" Schema="DAVIDTEST" store:Type="Tables" />
+    <EntitySet Name="PRESUPUESTO" EntityType="Self.PRESUPUESTO" Schema="DAVIDTEST" store:Type="Tables" />
+    <EntitySet Name="REG_DET_LIBROS" EntityType="Self.REG_DET_LIBROS" Schema="DAVIDTEST" store:Type="Tables" />
+    <EntitySet Name="REG_DET_PRESUPUESTOS" EntityType="Self.REG_DET_PRESUPUESTOS" Schema="DAVIDTEST" store:Type="Tables" />
+    <EntitySet Name="ROL" EntityType="Self.ROL" Schema="DAVIDTEST" store:Type="Tables" />
+    <EntitySet Name="RUBRO" EntityType="Self.RUBRO" Schema="DAVIDTEST" store:Type="Tables" />
+    <EntitySet Name="TRANSACCION" EntityType="Self.TRANSACCION" Schema="DAVIDTEST" store:Type="Tables" />
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="DAVIDTEST" store:Type="Tables" />
+    <AssociationSet Name="FK_LIBRO_CO_RELATIONS_USUARIO" Association="Self.FK_LIBRO_CO_RELATIONS_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="LIBRO_CONTABLE" EntitySet="LIBRO_CONTABLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRESUPUE_RELATIONS_USUARIO" Association="Self.FK_PRESUPUE_RELATIONS_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="PRESUPUESTO" EntitySet="PRESUPUESTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REG_DET__RELATIONS_LIBRO_CO" Association="Self.FK_REG_DET__RELATIONS_LIBRO_CO">
+      <End Role="LIBRO_CONTABLE" EntitySet="LIBRO_CONTABLE" />
+      <End Role="REG_DET_LIBROS" EntitySet="REG_DET_LIBROS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REG_DET__RELATIONS_PRESUPUE" Association="Self.FK_REG_DET__RELATIONS_PRESUPUE">
+      <End Role="PRESUPUESTO" EntitySet="PRESUPUESTO" />
+      <End Role="REG_DET_PRESUPUESTOS" EntitySet="REG_DET_PRESUPUESTOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REG_DET__RELATIONS_TRANSACC" Association="Self.FK_REG_DET__RELATIONS_TRANSACC">
+      <End Role="TRANSACCION" EntitySet="TRANSACCION" />
+      <End Role="REG_DET_LIBROS" EntitySet="REG_DET_LIBROS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REG_DET__RREG_TRA_TRANSACC" Association="Self.FK_REG_DET__RREG_TRA_TRANSACC">
+      <End Role="TRANSACCION" EntitySet="TRANSACCION" />
+      <End Role="REG_DET_PRESUPUESTOS" EntitySet="REG_DET_PRESUPUESTOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRANSACC_RELATIONS_RUBRO" Association="Self.FK_TRANSACC_RELATIONS_RUBRO">
+      <End Role="RUBRO" EntitySet="RUBRO" />
+      <End Role="TRANSACCION" EntitySet="TRANSACCION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USUARIO_RELATIONS_ROL" Association="Self.FK_USUARIO_RELATIONS_ROL">
+      <End Role="ROL" EntitySet="ROL" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

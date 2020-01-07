@@ -1,0 +1,66 @@
+﻿@model WorkContable.Models.Base.TRANSACCION
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles transacciones</h2>
+
+<div>
+    <h4>TRANSACCION</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SUBTOTAL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SUBTOTAL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IMPUESTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IMPUESTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TOTAL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TOTAL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RUBRO.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RUBRO.NOMBRE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Regresar a la lista", "Index")
+</p>

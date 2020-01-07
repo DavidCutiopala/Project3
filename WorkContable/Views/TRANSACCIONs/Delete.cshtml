@@ -1,0 +1,72 @@
+﻿@model WorkContable.Models.Base.TRANSACCION
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Borrar transaccion</h2>
+
+<h3>Estas seguro de eliminar la transaccion?</h3>
+<div>
+    <h4>TRANSACCION</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SUBTOTAL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SUBTOTAL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IMPUESTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IMPUESTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TOTAL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TOTAL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RUBRO.NOMBRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RUBRO.NOMBRE)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar a la lista", "Index")
+        </div>
+    }
+</div>

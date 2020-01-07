@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d9e98de489d54f368102c0ca14144fa3" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.LIBRO_CONTABLE" Width="2.5" PointX="6.5" PointY="1.375" />
+        <EntityTypeShape EntityType="Model.PRESUPUESTO" Width="1.5" PointX="4.625" PointY="5.375" />
+        <EntityTypeShape EntityType="Model.REG_DET_LIBROS" Width="1.5" PointX="10.625" PointY="1.5" />
+        <EntityTypeShape EntityType="Model.REG_DET_PRESUPUESTOS" Width="1.5" PointX="7.75" PointY="6.25" />
+        <EntityTypeShape EntityType="Model.ROL" Width="1.5" PointX="4.5" PointY="2.625" />
+        <EntityTypeShape EntityType="Model.RUBRO" Width="1.5" PointX="8.125" PointY="4.375" />
+        <EntityTypeShape EntityType="Model.TRANSACCION" Width="1.5" PointX="11.875" PointY="6.125" />
+        <EntityTypeShape EntityType="Model.USUARIO" Width="1.5" PointX="1.25" PointY="2.375" />
+        <AssociationConnector Association="Model.FK_LIBRO_CO_RELATIONS_USUARIO" />
+        <AssociationConnector Association="Model.FK_REG_DET__RELATIONS_LIBRO_CO" />
+        <AssociationConnector Association="Model.FK_PRESUPUE_RELATIONS_USUARIO" />
+        <AssociationConnector Association="Model.FK_REG_DET__RELATIONS_PRESUPUE" />
+        <AssociationConnector Association="Model.FK_REG_DET__RELATIONS_TRANSACC" />
+        <AssociationConnector Association="Model.FK_REG_DET__RREG_TRA_TRANSACC" />
+        <AssociationConnector Association="Model.FK_USUARIO_RELATIONS_ROL" />
+        <AssociationConnector Association="Model.FK_TRANSACC_RELATIONS_RUBRO" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

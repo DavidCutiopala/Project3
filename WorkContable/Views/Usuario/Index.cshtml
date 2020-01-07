@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+
+<h2 style="
+    text-align: center;
+">Login</h2>
+<!--
+<form method="post">
+    <fieldset>
+        <legend>Add Customer</legend>
+        <div>
+            <label for="CompanyName">Nombre de Usuario:</label>
+            <input type="text" name="nombreUsuario" value="" />
+        </div>
+        <div>
+            <label for="ContactName">Nombre:</label>
+            <input type="text" name="nombre" value="" />
+        </div>
+        <div>
+            <label for="Employees">Apellido:</label>
+            <input type="text" name="Employees" value="" />
+        </div>
+
+        <div>
+            <label for="Employees">Cedula:</label>
+            <input type="number" name="cedula" value="" />
+        </div>
+
+        <div>
+            <label for="Employees">Telefono:</label>
+            <input type="number" name="telf" value="" />
+        </div>
+
+        <div>
+            <label for="Employees">Correo Electronico:</label>
+            <input type="email" name="email" value="" />
+        </div>
+
+        <div>
+            <label for="Employees">Ruc:</label>
+            <input type="number" name="ruc" value="" />
+        </div>
+
+        <div>
+            <label>&nbsp;</label>
+            <input type="submit" value="Registrarse" class="submit" />
+        </div>
+    </fieldset>
+</form>
+-->
+
+<div class="row">
+    <img src="~/img/logo.jpeg" alt="Logo Fazt" class="card-img-top mx-auto m-2 rounded-circle w-50" style="
+    transform: translateX(300px);
+    height: 260px;
+">
+    <form id="frm">
+        <div class="col-lg-6 col-lg-offset-3">
+            Nombre de usuario
+            <input type="text" name="user" value="" /><br />
+            <br />
+        </div>
+        <div class="col-lg-6 col-lg-offset-3">
+            Password
+            <input type="password" name="password" value="" /><br />
+            <br />
+            <input type="submit" class="btn btn-success" value="Ingresar" />
+        </div>  
+</form>
+</div>
+
+
+@section scripts
+{
+<script>
+    $(document).ready(function () {
+        $("#frm").submit(function (e) {
+            e.preventDefault();
+            url = "@Url.Content("~/Usuario/Enter")"
+            parametros = $(this).serialize();
+
+            $.post(url,parametros,function(data){
+                if (data == "1") { //respuesta 1 es exitosa
+                    document.location.href = "@Url.Content("~/Home")";
+
+                } else {
+                    alert(data)
+                }
+            })
+        })
+
+    })
+
+</script>
+}
+

@@ -1,0 +1,173 @@
+﻿@model WorkContable.Models.ViewModels.PresupuestoViewModel
+@{
+    ViewBag.Title = "Maestro detalle";
+}
+
+<h2>Presupuestos</h2>
+<div style="color:azure">
+    @ViewBag.Message;
+
+</div>
+@using (Html.BeginForm("Add", "MaestroDetalle", FormMethod.Post))
+{
+
+    <div class="row">
+        <div class="col-sm-6" style="
+    padding-right: 15.5rem;">
+            <div class="form-group">
+                <div>
+                    @Html.LabelFor(d => d.valor)
+                    @Html.TextBoxFor(d => d.valor, "", new { @class = "form-control" })
+
+                </div>
+                <div>
+                    @Html.LabelFor(d => d.totalGastos)
+                    @Html.TextBoxFor(d => d.totalGastos, "", new { @class = "form-control" })
+
+                </div>
+                <div>
+                    @Html.LabelFor(d => d.fecha_inicio)<br />
+                    @Html.EditorFor(d => d.fecha_inicio, "", new { @class = "form-control" })
+
+                </div>
+                <div>
+                    @Html.LabelFor(d => d.fecha_fin)<br />
+                    @Html.EditorFor(d => d.fecha_fin, "", new { @class = "form-control" })
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="form-group">
+
+                    Rubro
+                    <input type="text" id="Rubro" class="form-control" />
+
+                    Tipo
+                    <input type="text" id="Tipo" class="form-control" />
+                    Fecha
+                    <input type="datetime" id="Fecha" class="form-control" />
+                    Subtotal
+                    <input type="number" id="Subtotal" class="form-control" />
+                    Impuesto
+                    <input type="number" id="Impuesto" class="form-control" />
+                    Total
+                    <input type="number" id="Total" class="form-control" />
+
+                    <input value="Agregar" type="button" onclick="AgregaConcepto(); return false;" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div id="divConceptos">
+            <table id="tablaConceptos" style="width:100%;" class="table table-hover">
+                <tr>
+                    <th>Tipo</th>
+                    <th>Fecha</th>
+                    <th>Subtotal</th>
+                    <th>Impuesto</th>
+                    <th>Total</th>
+                </tr>
+
+            </table>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" />
+        </div>
+    </div>
+
+
+
+}
+        <script>
+            var num = 0;
+            function AgregaConcepto() {
+                let Rubro = document.getElementById("Rubro").value;
+                let Tipo = document.getElementById("Tipo").value;
+                let Fecha = document.getElementById("Fecha").value;
+                let Subtotal = document.getElementById("Subtotal").value;
+                let Impuesto = document.getElementById("Impuesto").value;
+                let Total = document.getElementById("Total").value;
+                console.log(Tipo);
+                //agregamos tabla
+                let Tabla = document.getElementById("tablaConceptos");
+                let TR = document.createElement("tr");
+                let TDRubro = document.createElement("td");
+                let TDTipo = document.createElement("td");
+                let TDFecha = document.createElement("td");
+                let TDSubtotal = document.createElement("td");
+                let TDImpuesto = document.createElement("td");
+                let TDTotal = document.createElement("td");
+                TR.appendChild(TDRubro);
+                TR.appendChild(TDTipo);
+                TR.appendChild(TDFecha);
+                TR.appendChild(TDSubtotal);
+                TR.appendChild(TDImpuesto);
+                TR.appendChild(TDTotal);
+                TDRubro.innerHTML = Rubro;
+                TDTipo.innerHTML = Tipo;
+                TDFecha.innerHTML = Fecha;
+                TDSubtotal.innerHTML = Subtotal;
+                TDImpuesto.innerHTML = Impuesto;
+                TDTotal.innerHTML = Total;
+
+                Tabla.appendChild(TR);
+
+                //agregamos hiddens
+                let DivConceptos = document.getElementById("divConceptos");
+                let HiddenIndex = document.createElement("input");
+                let HiddenRubro = document.createElement("input");
+                let HiddenTipo = document.createElement("input");
+                let HiddenFecha = document.createElement("input");
+                let HiddenSubtotal = document.createElement("input");
+                let HiddenImpuesto = document.createElement("input");
+                let HiddenTotal = document.createElement("input");
+                HiddenIndex.name = "transacciones.Index";
+                HiddenIndex.value = num;
+                HiddenIndex.type = "hidden";
+                HiddenRubro.name = "transacciones[" + num + "].rubro";
+                HiddenRubro.value = Rubro;
+                HiddenRubro.type = "hidden";
+                HiddenTipo.name = "transacciones[" + num + "].tipo";
+                HiddenTipo.value = Tipo;
+                HiddenTipo.type = "hidden";
+                HiddenFecha.name = "transacciones[" + num + "].fecha";
+                HiddenFecha.value = Fecha;
+                HiddenFecha.type = "hidden";
+                HiddenSubtotal.name = "transacciones[" + num + "].subtotal";
+                HiddenSubtotal.value = Subtotal;
+                HiddenSubtotal.type = "hidden";
+                HiddenImpuesto.name = "transacciones[" + num + "].impuesto";
+                HiddenImpuesto.value = Impuesto;
+                HiddenImpuesto.type = "hidden";
+                HiddenTotal.name = "transacciones[" + num + "].total";
+                HiddenTotal.value = Total;
+                HiddenTotal.type = "hidden";
+                DivConceptos.appendChild(HiddenIndex);
+                DivConceptos.appendChild(HiddenRubro);
+                DivConceptos.appendChild(HiddenTipo);
+                DivConceptos.appendChild(HiddenFecha);
+                DivConceptos.appendChild(HiddenSubtotal);
+                DivConceptos.appendChild(HiddenImpuesto);
+                DivConceptos.appendChild(HiddenTotal);
+
+
+                document.getElementById("rubro").value = "";
+                document.getElementById("Tipo").value = "";
+                document.getElementById("Fecha").value = "";
+                document.getElementById("Subtotal").value = "";
+                document.getElementById("Impuesto").value = "";
+                document.getElementById("Total").value = "";
+
+                num++;
+            }
+  </script>
+
+
+
